@@ -206,6 +206,9 @@ let app = new Vue({
             let result = await f('logout', 'post', null, true);
             this.user.token = null;
             localStorage.removeItem('token');
+            if(['my_bookings', 'my_bookings_current'].includes(this.page)){
+                this.go('home');
+            }
         },
         async Bookings() {
             this.myBookings.bookings = await f('booking', 'get', null, true);

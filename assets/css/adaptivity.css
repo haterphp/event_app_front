@@ -1,0 +1,39 @@
+@media all and (max-width: 1199px){
+    header{
+        display: flex;
+    }
+    #book_panel{
+        display: block;
+    }
+    .nav{
+        display: none;
+        width: 250px;
+        position: fixed;
+    }
+    .btn-custom{
+        width: 100%;
+    }
+    #book_desktop{
+        display: none;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    header{
+        display: none;
+    }
+    #book_panel{
+        display: none;
+    }
+    .nav{
+        display: flex;
+        width: 100%;
+    }
+    #book_desktop{
+        display: block;
+    }
+    .main-container-content{
+        height: 100vh;
+        overflow: auto;
+    }
+}

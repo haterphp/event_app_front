@@ -27,15 +27,11 @@ header {
     height: 10vh;
     width: 100%;
     padding: 0.5em;
-    display: flex;
     align-items: flex-end;
 }
 
 .nav {
-    display: none;
-    width: 250px;
     height: 100vh;
-    position: fixed;
     left: 0;
     top: 0;
     background-color: #152f3e;
@@ -101,6 +97,9 @@ header {
 .main-container {
     padding: calc(1rem + .5em);
 }
+.main-container-content{
+    padding: calc(1rem + .5em);
+}
 
 .card {
     background-color: #283f4d;
@@ -119,8 +118,9 @@ header {
 
 .btn-custom {
     background-color: #ffcd00;
-    width: 100%;
-    color: #fff;
+    /*color: #fff;*/
+    color: #283f4d;
+    font-weight: bold;
 }
 
 #forms_auth {
