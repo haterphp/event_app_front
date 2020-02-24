@@ -1,0 +1,202 @@
+body {
+    background-color: #102733;
+    color: #fff;
+}
+
+.svg-container {
+    width: 30px;
+    cursor: pointer;
+}
+
+.svg-logo {
+    width: 40px;
+    fill: #fccd00;
+}
+
+.svg-menu {
+    fill: #fff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+header {
+    height: 10vh;
+    width: 100%;
+    padding: 0.5em;
+    display: flex;
+    align-items: flex-end;
+}
+
+.nav {
+    display: none;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #152f3e;
+    border-radius: 0 30px 30px 0;
+}
+
+.logo-nav {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.nav-header {
+    height: 10vh;
+    padding: .5em;
+    display: flex;
+    align-items: flex-end;
+}
+
+.nav-container {
+    margin-top: 5em;
+    width: 100%;
+    padding-left: 15px;
+}
+
+.nav-item {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-item::before {
+    content: "";
+    width: 0;
+    height: 5px;
+    background-color: #fccd00;
+    position: absolute;
+    top: 49%;
+    left: -7px;
+    transition: .5s;
+}
+
+.nav-item:hover::before {
+    width: 25px;
+}
+
+.selected {
+    color: #ffcd00;
+}
+
+#menu-nav {
+    z-index: 10000;
+}
+
+.custom-backdrop {
+    width: 100%;
+    height: 100vh;
+}
+
+.main-container {
+    padding: calc(1rem + .5em);
+}
+
+.card {
+    background-color: #283f4d;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.svg-card {
+    width: 20px;
+    fill: #fff;
+}
+
+.card:hover h3 {
+    text-decoration: underline;
+}
+
+.btn-custom {
+    background-color: #ffcd00;
+    width: 100%;
+    color: #fff;
+}
+
+#forms_auth {
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    position: fixed;
+    z-index: 10000;
+}
+
+.bg-auth {
+    z-index: -1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #152f3e;
+}
+
+.auth-content {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+label {
+    color: #000;
+}
+
+.form-custom {
+    border: 0;
+    border-bottom: solid 2px #ffcd00;
+    border-radius: 0;
+}
+
+hr {
+    background-color: #f9f9f9;
+    height: 1px;
+    width: 100%;
+    margin: 0;
+}
+
+.page-picker {
+    width: 100%;
+    padding: 1em;
+}
+
+.picker-item {
+    color: #373c40;
+    cursor: pointer;
+}
+
+.selected-pick {
+    color: #ffcd00;
+}
+.error-feedback{
+    color: #ff353b;
+}
+.booking-bottom{
+    padding: 1em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    background-color: #152f3e;
+}
+.bg-none{
+    background: transparent;
+    color: #fff;
+}
+.bg-none:focus{
+    color: #fff;
+    background-color: transparent;
+}
+.bg-none::placeholder{
+    color: #fff;
+}
+.span_name{
+    font-size: 20px;
+}
+.back-svg{
+    transform: rotate(180deg);
+}

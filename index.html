@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="assets/libs/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <script defer src="assets/libs/js/jquery.js"></script>
+    <script defer src="assets/libs/js/bootstrap.js"></script>
+    <script defer src="assets/libs/js/vue.js"></script>
+    <script defer src="assets/js/animations.js"></script>
+    <script defer src="assets/js/main.js"></script>
+
+    <title>Events App</title>
+</head>
+<body>
+<div id="app">
+    <header>
+        <div class="d-flex justify-content-between align-items-center w-100 pl-3 pr-3">
+            <div @click="go('home')" class="logo">
+                <div class="svg-container svg-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                         id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                         xml:space="preserve">
+<g>
+	<g>
+		<path d="M469.333,304.228V85.333c0-23.531-19.135-42.667-42.667-42.667h-53.333c-5.896,0-10.667,4.771-10.667,10.667v53.333    c0,11.76-9.573,21.333-21.333,21.333c-11.76,0-21.333-9.573-21.333-21.333c0-8.917,5.729-16.948,14.25-19.979    c4.25-1.521,7.083-5.542,7.083-10.052V10.667C341.333,4.771,336.563,0,330.667,0C324.771,0,320,4.771,320,10.667v32H160    c-5.896,0-10.667,4.771-10.667,10.667v53.333c0,11.76-9.573,21.333-21.333,21.333s-21.333-9.573-21.333-21.333    c0-8.917,5.729-16.948,14.25-19.979c4.25-1.521,7.083-5.542,7.083-10.052V10.667C128,4.771,123.229,0,117.333,0    c-5.896,0-10.667,4.771-10.667,10.667v32h-64C19.135,42.667,0,61.802,0,85.333v341.333c0,23.531,19.135,42.667,42.667,42.667    h261.561C325.767,495.376,358.31,512,394.667,512C459.365,512,512,459.365,512,394.667    C512,358.31,495.376,325.767,469.333,304.228z M277.333,394.667c0,11.104,1.652,21.811,4.548,32H42.667v-256h384v111.215    c-10.189-2.896-20.896-4.548-32-4.548C329.969,277.333,277.333,329.969,277.333,394.667z M455.542,370.208l-74.667,74.667    c-2.083,2.083-4.813,3.125-7.542,3.125c-2.729,0-5.458-1.042-7.542-3.125l-32-32c-4.167-4.167-4.167-10.917,0-15.083    c4.167-4.167,10.917-4.167,15.083,0l24.458,24.458l67.125-67.125c4.167-4.167,10.917-4.167,15.083,0    C459.708,359.292,459.708,366.042,455.542,370.208z"/>
+	</g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+</svg>
+                </div>
+                <p style="margin: 0; margin-left: 15px">Events App</p>
+            </div>
+            <div class="menu-button" id="menu-button" onclick="openMenu('#menu', '#menu-nav' ,'flex')">
+                <div class="svg-container svg-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                         id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                         xml:space="preserve">
+<g>
+	<g>
+		<path d="M201.532,0H119.83C53.755,0,0,53.755,0,119.83v81.702c0,21.379,16.749,38.128,38.128,38.128h163.404    c21.379,0,38.128-16.749,38.128-38.128V38.128C239.66,16.749,222.911,0,201.532,0z M217.872,201.532    c0,9.162-7.179,16.34-16.34,16.34H38.128c-9.162,0-16.34-7.179-16.34-16.34V119.83c0-54.06,43.983-98.043,98.043-98.043h81.702    c9.162,0,16.34,7.179,16.34,16.34V201.532z"/>
+	</g>
+</g>
+                        <g>
+	<g>
+		<path d="M392.17,0h-81.702c-21.379,0-38.128,16.749-38.128,38.128v163.404c0,21.379,16.749,38.128,38.128,38.128h163.404    c21.379,0,38.128-16.749,38.128-38.128V119.83C512,53.755,458.245,0,392.17,0z M490.213,201.532c0,9.162-7.173,16.34-16.34,16.34    H310.468c-9.167,0-16.34-7.179-16.34-16.34V38.128c0-9.162,7.173-16.34,16.34-16.34h81.702c54.06,0,98.043,43.983,98.043,98.043    V201.532z"/>
+	</g>
+</g>
+                        <g>
+	<g>
+		<path d="M473.872,272.34H310.468c-21.379,0-38.128,16.749-38.128,38.128v190.638c0,6.013,4.88,10.894,10.894,10.894H392.17    C458.245,512,512,458.245,512,392.17v-81.702C512,289.089,495.251,272.34,473.872,272.34z M490.213,392.17    c0,54.06-43.983,98.043-98.043,98.043h-98.043V310.468c0-9.167,7.173-16.34,16.34-16.34h163.404c9.167,0,16.34,7.173,16.34,16.34    V392.17z"/>
+	</g>
+</g>
+                        <g>
+	<g>
+		<path d="M201.532,272.34H38.128C16.749,272.34,0,289.089,0,310.468v81.702C0,458.245,53.755,512,119.83,512h108.936    c6.013,0,10.894-4.88,10.894-10.894V310.468C239.66,289.089,222.911,272.34,201.532,272.34z M217.872,490.213H119.83    c-54.06,0-98.043-43.983-98.043-98.043v-81.702c0-9.167,7.179-16.34,16.34-16.34h163.404c9.162,0,16.34,7.173,16.34,16.34V490.213    z"/>
+	</g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+</svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="modal" id="menu">
+        <div class="nav flex-column" id="menu-nav">
+            <div class="nav-header">
+                <div class="logo-nav">
+                    <div class="svg-container svg-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                             id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512"
+                             style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M469.333,304.228V85.333c0-23.531-19.135-42.667-42.667-42.667h-53.333c-5.896,0-10.667,4.771-10.667,10.667v53.333    c0,11.76-9.573,21.333-21.333,21.333c-11.76,0-21.333-9.573-21.333-21.333c0-8.917,5.729-16.948,14.25-19.979    c4.25-1.521,7.083-5.542,7.083-10.052V10.667C341.333,4.771,336.563,0,330.667,0C324.771,0,320,4.771,320,10.667v32H160    c-5.896,0-10.667,4.771-10.667,10.667v53.333c0,11.76-9.573,21.333-21.333,21.333s-21.333-9.573-21.333-21.333    c0-8.917,5.729-16.948,14.25-19.979c4.25-1.521,7.083-5.542,7.083-10.052V10.667C128,4.771,123.229,0,117.333,0    c-5.896,0-10.667,4.771-10.667,10.667v32h-64C19.135,42.667,0,61.802,0,85.333v341.333c0,23.531,19.135,42.667,42.667,42.667    h261.561C325.767,495.376,358.31,512,394.667,512C459.365,512,512,459.365,512,394.667    C512,358.31,495.376,325.767,469.333,304.228z M277.333,394.667c0,11.104,1.652,21.811,4.548,32H42.667v-256h384v111.215    c-10.189-2.896-20.896-4.548-32-4.548C329.969,277.333,277.333,329.969,277.333,394.667z M455.542,370.208l-74.667,74.667    c-2.083,2.083-4.813,3.125-7.542,3.125c-2.729,0-5.458-1.042-7.542-3.125l-32-32c-4.167-4.167-4.167-10.917,0-15.083    c4.167-4.167,10.917-4.167,15.083,0l24.458,24.458l67.125-67.125c4.167-4.167,10.917-4.167,15.083,0    C459.708,359.292,459.708,366.042,455.542,370.208z"/>
+	</g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+</svg>
+                    </div>
+                    <p style="margin: 0; margin-left: 15px">Events App</p>
+                </div>
+            </div>
+            <div class="nav-container">
+                <div class="nav-item" :class="{ 'selected' : isSelectPage('home') }" @click="go('home')">Home</div>
+                <div class="nav-item" :class="{ 'selected' : isSelectPage('my_bookings') }" v-if="user.token" @click="go('my_bookings')">
+                    My Bookings
+                </div>
+                <div class="nav-item" @click="goToAuth()" v-if="!user.token">Log in</div>
+                <div class="nav-item" @click="LogOut()" v-else="user.token">Log Out</div>
+            </div>
+        </div>
+        <div class="custom-backdrop" onclick="closeMenu('#menu', '#menu-nav')"></div>
+    </div>
+
+    <div id="forms_auth" v-if="authOpen == 'true'">
+        <div class="bg-auth">
+
+        </div>
+        <div class="d-flex align-items-center h-100 w-100 justify-content-center">
+            <div class="row w-100">
+                <div class="col-md-3 col-xl-4"></div>
+                <div class="col-12 col-md-6 p-2 col-xl-4">
+                    <div class="auth-content p-4 d-flex flex-column align-items-center">
+                        <div class="logo mb-3" @click="closeAuth()">
+                            <div class="svg-container svg-logo">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     version="1.1"
+                                     id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512"
+                                     style="enable-background:new 0 0 512 512;"
+                                     xml:space="preserve">
+<g>
+	<g>
+		<path d="M469.333,304.228V85.333c0-23.531-19.135-42.667-42.667-42.667h-53.333c-5.896,0-10.667,4.771-10.667,10.667v53.333    c0,11.76-9.573,21.333-21.333,21.333c-11.76,0-21.333-9.573-21.333-21.333c0-8.917,5.729-16.948,14.25-19.979    c4.25-1.521,7.083-5.542,7.083-10.052V10.667C341.333,4.771,336.563,0,330.667,0C324.771,0,320,4.771,320,10.667v32H160    c-5.896,0-10.667,4.771-10.667,10.667v53.333c0,11.76-9.573,21.333-21.333,21.333s-21.333-9.573-21.333-21.333    c0-8.917,5.729-16.948,14.25-19.979c4.25-1.521,7.083-5.542,7.083-10.052V10.667C128,4.771,123.229,0,117.333,0    c-5.896,0-10.667,4.771-10.667,10.667v32h-64C19.135,42.667,0,61.802,0,85.333v341.333c0,23.531,19.135,42.667,42.667,42.667    h261.561C325.767,495.376,358.31,512,394.667,512C459.365,512,512,459.365,512,394.667    C512,358.31,495.376,325.767,469.333,304.228z M277.333,394.667c0,11.104,1.652,21.811,4.548,32H42.667v-256h384v111.215    c-10.189-2.896-20.896-4.548-32-4.548C329.969,277.333,277.333,329.969,277.333,394.667z M455.542,370.208l-74.667,74.667    c-2.083,2.083-4.813,3.125-7.542,3.125c-2.729,0-5.458-1.042-7.542-3.125l-32-32c-4.167-4.167-4.167-10.917,0-15.083    c4.167-4.167,10.917-4.167,15.083,0l24.458,24.458l67.125-67.125c4.167-4.167,10.917-4.167,15.083,0    C459.708,359.292,459.708,366.042,455.542,370.208z"/>
+	</g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+                                    <g>
+</g>
+</svg>
+                            </div>
+                            <p style="margin: 0; margin-left: 15px; color: #000">Events App</p>
+                        </div>
+                        <hr>
+                        <div class="page-picker d-flex justify-content-around">
+                            <span class="picker-item" :class="{ 'selected-pick' : isAuthPage('login') }" @click="auth.page = 'login'">Log In</span>
+                            <span class="picker-item" :class="{ 'selected-pick' : isAuthPage('register') }" @click="auth.page = 'register'">Sign Up</span>
+                        </div>
+                        <form @submit.prevent="Register" v-if="auth.page === 'register'">
+                            <div class="form-group">
+                                <label for="first_name_r" class="sr-only">First Name</label>
+                                <input type="text" placeholder="First Name" class="form-control form-custom"
+                                       id="first_name_r" v-model="auth.register.fields.first_name"
+                                       :class="{ 'is-invalid' : isExistField('first_name', auth.register.errors)}">
+                                <span v-if="isExistField('first_name', auth.register.errors)" class="invalid-feedback">{{auth.register.errors.first_name}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name_r" class="sr-only">Last Name</label>
+                                <input type="text" placeholder="Last Name" class="form-control form-custom"
+                                       id="last_name_r" v-model="auth.register.fields.last_name"
+                                       :class="{ 'is-invalid' : isExistField('last_name', auth.register.errors)}">
+                                <span v-if="isExistField('last_name', auth.register.errors)" class="invalid-feedback">{{auth.register.errors.last_name}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email_r" class="sr-only">Email</label>
+                                <input type="text" placeholder="Email" class="form-control form-custom"
+                                       id="email_r" v-model="auth.register.fields.email"
+                                       :class="{ 'is-invalid' : isExistField('email', auth.register.errors)}">
+                                <span v-if="isExistField('email', auth.register.errors)" class="invalid-feedback">{{auth.register.errors.email}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password_r" class="sr-only">Password</label>
+                                <input type="password" placeholder="Password" class="form-control form-custom"
+                                       id="password_r"
+                                       v-model="auth.register.fields.password"
+                                       :class="{ 'is-invalid' : isExistField('password', auth.register.errors)}">
+                                <span v-if="isExistField('password', auth.register.errors)" class="invalid-feedback">{{auth.register.errors.password}}</span>
+                            </div>
+                            <button type="submit" class="btn btn-custom">Send</button>
+                        </form>
+                        <form @submit.prevent="Login" v-if="auth.page === 'login'">
+                            <h5 v-if="isExistField('login', auth.login.errors)" class="error-feedback">{{auth.login.errors.login}}</h5>
+                            <div class="form-group">
+                                <label for="email_l" class="sr-only">Email</label>
+                                <input type="text" placeholder="Email" class="form-control form-custom"
+                                       id="email_l" v-model="auth.login.fields.email"
+                                       :class="{ 'is-invalid' : isExistField('email', auth.login.errors)}">
+                                <span v-if="isExistField('email', auth.login.errors)" class="invalid-feedback">{{auth.login.errors.email}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password_l" class="sr-only">Password</label>
+                                <input type="password" placeholder="Password" class="form-control form-custom"
+                                       id="password_l"
+                                       v-model="auth.login.fields.password"
+                                       :class="{ 'is-invalid' : isExistField('password', auth.login.errors)}">
+                                <span v-if="isExistField('password', auth.login.errors)" class="invalid-feedback">{{auth.login.errors.password}}</span>
+                            </div>
+                            <button type="submit" class="btn btn-custom">Send</button>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="col-md-3 col-xl-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div id="home" v-if="page === 'home'">
+            <h2>Home</h2>
+            <div class="row">
+                <div class="col-12 col-md-6 col-xl-4" v-for="event in home.events">
+                    <div class="card mt-3" @click="getCurrentEvent(event.slug)">
+                        <div class="card-body">
+                            <h3>{{event.name}}</h3>
+                            <div class="d-flex align-items-center">
+                                <div class="svg-card">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512"
+                                         style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M469.333,304.228V85.333c0-23.531-19.135-42.667-42.667-42.667h-53.333c-5.896,0-10.667,4.771-10.667,10.667v53.333    c0,11.76-9.573,21.333-21.333,21.333c-11.76,0-21.333-9.573-21.333-21.333c0-8.917,5.729-16.948,14.25-19.979    c4.25-1.521,7.083-5.542,7.083-10.052V10.667C341.333,4.771,336.563,0,330.667,0C324.771,0,320,4.771,320,10.667v32H160    c-5.896,0-10.667,4.771-10.667,10.667v53.333c0,11.76-9.573,21.333-21.333,21.333s-21.333-9.573-21.333-21.333    c0-8.917,5.729-16.948,14.25-19.979c4.25-1.521,7.083-5.542,7.083-10.052V10.667C128,4.771,123.229,0,117.333,0    c-5.896,0-10.667,4.771-10.667,10.667v32h-64C19.135,42.667,0,61.802,0,85.333v341.333c0,23.531,19.135,42.667,42.667,42.667    h261.561C325.767,495.376,358.31,512,394.667,512C459.365,512,512,459.365,512,394.667    C512,358.31,495.376,325.767,469.333,304.228z M277.333,394.667c0,11.104,1.652,21.811,4.548,32H42.667v-256h384v111.215    c-10.189-2.896-20.896-4.548-32-4.548C329.969,277.333,277.333,329.969,277.333,394.667z M455.542,370.208l-74.667,74.667    c-2.083,2.083-4.813,3.125-7.542,3.125c-2.729,0-5.458-1.042-7.542-3.125l-32-32c-4.167-4.167-4.167-10.917,0-15.083    c4.167-4.167,10.917-4.167,15.083,0l24.458,24.458l67.125-67.125c4.167-4.167,10.917-4.167,15.083,0    C459.708,359.292,459.708,366.042,455.542,370.208z"/>
+	</g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+</svg>
+                                </div>
+                                <div class="ml-3">
+                                    <span>{{event.date}}</span>
+                                    <span>{{event.time}}</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start mt-2">
+                                <div class="svg-card">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512"
+                                         style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M256,0C150.125,0,64,86.135,64,192c0,141.646,177.146,310,184.688,317.104C250.75,511.031,253.375,512,256,512    s5.25-0.969,7.313-2.896C270.854,502,448,333.646,448,192C448,86.135,361.875,0,256,0z M256,298.667    c-58.813,0-106.667-47.854-106.667-106.667S197.188,85.333,256,85.333S362.667,133.188,362.667,192S314.813,298.667,256,298.667z"/>
+	</g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+</svg>
+                                </div>
+                                <p class="ml-3">
+                                    <small>{{event.address}}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="current" v-if="page === 'current'">
+            <div class="d-flex align-items-center" style="cursor: pointer; margin-bottom: 15px" @click="go('home')">
+                <div class="svg-card back-svg" >
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512.002 512.002" style="enable-background:new 0 0 512.002 512.002;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M388.425,241.951L151.609,5.79c-7.759-7.733-20.321-7.72-28.067,0.04c-7.74,7.759-7.72,20.328,0.04,28.067l222.72,222.105    L123.574,478.106c-7.759,7.74-7.779,20.301-0.04,28.061c3.883,3.89,8.97,5.835,14.057,5.835c5.074,0,10.141-1.932,14.017-5.795    l236.817-236.155c3.737-3.718,5.834-8.778,5.834-14.05S392.156,245.676,388.425,241.951z"/>
+	</g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+</svg>
+                </div>
+                <p style="margin: 0; margin-left: 15px">Home</p>
+            </div>
+            <hr>
+            <div class="current-header" style="margin-top: 15px">
+                <p style="margin-bottom: 5px">{{current.event.slug}}</p>
+                <h2>{{current.event.name}}</h2>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="svg-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                         id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                         xml:space="preserve">
+<g>
+	<g>
+		<path d="M469.333,304.228V85.333c0-23.531-19.135-42.667-42.667-42.667h-53.333c-5.896,0-10.667,4.771-10.667,10.667v53.333    c0,11.76-9.573,21.333-21.333,21.333c-11.76,0-21.333-9.573-21.333-21.333c0-8.917,5.729-16.948,14.25-19.979    c4.25-1.521,7.083-5.542,7.083-10.052V10.667C341.333,4.771,336.563,0,330.667,0C324.771,0,320,4.771,320,10.667v32H160    c-5.896,0-10.667,4.771-10.667,10.667v53.333c0,11.76-9.573,21.333-21.333,21.333s-21.333-9.573-21.333-21.333    c0-8.917,5.729-16.948,14.25-19.979c4.25-1.521,7.083-5.542,7.083-10.052V10.667C128,4.771,123.229,0,117.333,0    c-5.896,0-10.667,4.771-10.667,10.667v32h-64C19.135,42.667,0,61.802,0,85.333v341.333c0,23.531,19.135,42.667,42.667,42.667    h261.561C325.767,495.376,358.31,512,394.667,512C459.365,512,512,459.365,512,394.667    C512,358.31,495.376,325.767,469.333,304.228z M277.333,394.667c0,11.104,1.652,21.811,4.548,32H42.667v-256h384v111.215    c-10.189-2.896-20.896-4.548-32-4.548C329.969,277.333,277.333,329.969,277.333,394.667z M455.542,370.208l-74.667,74.667    c-2.083,2.083-4.813,3.125-7.542,3.125c-2.729,0-5.458-1.042-7.542-3.125l-32-32c-4.167-4.167-4.167-10.917,0-15.083    c4.167-4.167,10.917-4.167,15.083,0l24.458,24.458l67.125-67.125c4.167-4.167,10.917-4.167,15.083,0    C459.708,359.292,459.708,366.042,455.542,370.208z"/>
+	</g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+</svg>
+                </div>
+                <div class="ml-3">
+                    <span>{{current.event.date}}</span>
+                    <span>{{current.event.time}}</span>
+                </div>
+            </div>
+            <div class="d-flex align-items-start mt-2">
+                <div class="svg-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                         id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                         xml:space="preserve">
+<g>
+	<g>
+		<path d="M256,0C150.125,0,64,86.135,64,192c0,141.646,177.146,310,184.688,317.104C250.75,511.031,253.375,512,256,512    s5.25-0.969,7.313-2.896C270.854,502,448,333.646,448,192C448,86.135,361.875,0,256,0z M256,298.667    c-58.813,0-106.667-47.854-106.667-106.667S197.188,85.333,256,85.333S362.667,133.188,362.667,192S314.813,298.667,256,298.667z"/>
+	</g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+</svg>
+                </div>
+                <p class="ml-3">
+                    <small>{{current.event.address}}</small>
+                </p>
+            </div>
+            <div class="main-current mt-3" v-if="!user.token">
+                <h5>To booking on event, please Log In</h5>
+                <button class="btn btn-custom mt-3" @click="goToAuth()">Log In</button>
+            </div>
+            <div class="main-container mt-3" v-else>
+                <div class="d-flex align-items-center flex-column">
+                    <button class="btn btn-custom mt-1" @click="addVisitor"> + Add Visitor </button>
+                    <p class="error-feedback mt-2" v-if="isExistField('visitors', current.booking.errors)">{{current.booking.errors.visitors}}</p>
+                </div>
+                <div class="row" style="margin-bottom: 5vh">
+                    <div class="col-12 col-md-6 col-xl-4 p-3" v-for="(visitor, i) in current.booking.fields.visitors">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4>Visitor {{i+1}}</h4>
+                            <button style="background: transparent;" @click="deleteVisitor(visitor)" class="btn p-2 d-flex align-items-center">
+                                <svg style="height: 35px; width: 25px; fill: #fff;" xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 551.13 551.13" height="512" viewBox="0 0 551.13 551.13" width="512"><path d="m516.685 68.891h-137.783v-51.668c0-9.52-7.703-17.223-17.223-17.223h-172.228c-9.52 0-17.223 7.703-17.223 17.223v51.668h-137.782v34.446h34.446v413.348c0 19.006 15.457 34.446 34.446 34.446h344.456c18.989 0 34.446-15.44 34.446-34.446v-413.348h34.446v-34.446zm-310.011-34.445h137.783v34.446h-137.783zm241.153 482.239-.034 17.223v-17.223h-344.456v-413.348h344.456v413.348z"/></svg></button>
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-custom bg-none" :class="{'is-invalid':isExistField('first_name', current.booking.fields.visitors[i].errors)}" placeholder="First Name" v-model="visitor.first_name">
+                                <span class="invalid-feedback" v-if="isExistField('first_name', current.booking.fields.visitors[i].errors)">{{current.booking.fields.visitors[i].errors.first_name}}</span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-custom bg-none" :class="{'is-invalid':isExistField('last_name', current.booking.fields.visitors[i].errors)}" placeholder="Last Name" v-model="visitor.last_name">
+                                <span class="invalid-feedback" v-if="isExistField('last_name', current.booking.fields.visitors[i].errors)">{{current.booking.fields.visitors[i].errors.last_name}}</span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-custom bg-none" :class="{'is-invalid':isExistField('birthdate', current.booking.fields.visitors[i].errors)}" placeholder="Birthday" v-model="visitor.birthdate">
+                                <span class="invalid-feedback" v-if="isExistField('birthdate', current.booking.fields.visitors[i].errors)">{{current.booking.fields.visitors[i].errors.birthdate}}</span>
+                            </div>
+                            <div class="p-2">
+                                <div class="form-check" v-for="option in current.event.options">
+                                    <label>
+                                        <input type="checkbox" class="form-check-input" :value="option.id" @change="optionVisitorChange(i, option.id)">
+                                        <span class="form-check-label ml-2" style="color: #fff">{{option.name}}</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                        <hr style="background-color: rgba(255,255,255,0.17);">
+                    </div>
+                </div>
+                <div class="fixed-bottom booking-bottom">
+                    <button class="btn btn-custom" @click="Booking(current.event.slug)">Book Now</button>
+                </div>
+            </div>
+        </div>
+        <div id="my_bookings" v-if="page === 'my_bookings'">
+            <h2>My Bookings</h2>
+            <div class="row">
+                <div class="col-12 col-md-6 col-xl-4" v-for="booking in myBookings.bookings">
+                    <div class="card mt-3" @click="getCurrentBooking(booking.code)">
+                        <div class="card-body">
+                            <h5>Code: {{booking.code}}</h5>
+                            <h3>{{booking.event.name}}</h3>
+                            <div class="d-flex align-items-center">
+                                <div class="svg-card">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512"
+                                         style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M469.333,304.228V85.333c0-23.531-19.135-42.667-42.667-42.667h-53.333c-5.896,0-10.667,4.771-10.667,10.667v53.333    c0,11.76-9.573,21.333-21.333,21.333c-11.76,0-21.333-9.573-21.333-21.333c0-8.917,5.729-16.948,14.25-19.979    c4.25-1.521,7.083-5.542,7.083-10.052V10.667C341.333,4.771,336.563,0,330.667,0C324.771,0,320,4.771,320,10.667v32H160    c-5.896,0-10.667,4.771-10.667,10.667v53.333c0,11.76-9.573,21.333-21.333,21.333s-21.333-9.573-21.333-21.333    c0-8.917,5.729-16.948,14.25-19.979c4.25-1.521,7.083-5.542,7.083-10.052V10.667C128,4.771,123.229,0,117.333,0    c-5.896,0-10.667,4.771-10.667,10.667v32h-64C19.135,42.667,0,61.802,0,85.333v341.333c0,23.531,19.135,42.667,42.667,42.667    h261.561C325.767,495.376,358.31,512,394.667,512C459.365,512,512,459.365,512,394.667    C512,358.31,495.376,325.767,469.333,304.228z M277.333,394.667c0,11.104,1.652,21.811,4.548,32H42.667v-256h384v111.215    c-10.189-2.896-20.896-4.548-32-4.548C329.969,277.333,277.333,329.969,277.333,394.667z M455.542,370.208l-74.667,74.667    c-2.083,2.083-4.813,3.125-7.542,3.125c-2.729,0-5.458-1.042-7.542-3.125l-32-32c-4.167-4.167-4.167-10.917,0-15.083    c4.167-4.167,10.917-4.167,15.083,0l24.458,24.458l67.125-67.125c4.167-4.167,10.917-4.167,15.083,0    C459.708,359.292,459.708,366.042,455.542,370.208z"/>
+	</g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+</svg>
+                                </div>
+                                <div class="ml-3">
+                                    <span>{{booking.event.date}}</span>
+                                    <span>{{booking.event.time}}</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start mt-2">
+                                <div class="svg-card">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512"
+                                         style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M256,0C150.125,0,64,86.135,64,192c0,141.646,177.146,310,184.688,317.104C250.75,511.031,253.375,512,256,512    s5.25-0.969,7.313-2.896C270.854,502,448,333.646,448,192C448,86.135,361.875,0,256,0z M256,298.667    c-58.813,0-106.667-47.854-106.667-106.667S197.188,85.333,256,85.333S362.667,133.188,362.667,192S314.813,298.667,256,298.667z"/>
+	</g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+                                        <g>
+</g>
+</svg>
+                                </div>
+                                <p class="ml-3">
+                                    <small>{{booking.event.address}}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="my_bookings_current" v-if="page === 'my_bookings_current'">
+            <div class="current-header">
+                <div class="d-flex align-items-center" style="cursor: pointer; margin-bottom: 15px" @click="go('my_bookings')">
+                    <div class="svg-card back-svg" >
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512.002 512.002" style="enable-background:new 0 0 512.002 512.002;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M388.425,241.951L151.609,5.79c-7.759-7.733-20.321-7.72-28.067,0.04c-7.74,7.759-7.72,20.328,0.04,28.067l222.72,222.105    L123.574,478.106c-7.759,7.74-7.779,20.301-0.04,28.061c3.883,3.89,8.97,5.835,14.057,5.835c5.074,0,10.141-1.932,14.017-5.795    l236.817-236.155c3.737-3.718,5.834-8.778,5.834-14.05S392.156,245.676,388.425,241.951z"/>
+	</g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+                            <g>
+</g>
+</svg>
+                    </div>
+                    <p style="margin: 0; margin-left: 15px">My Bookings</p>
+                </div>
+                <hr>
+                <p style="margin-bottom: 5px; margin-top: 15px">{{myBookings.selectBooking.event.slug}}</p>
+                <h2>{{myBookings.selectBooking.event.name}}</h2>
+                <h4 style="margin-bottom: 15px">Code: {{myBookings.selectBooking.code}}</h4>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="svg-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                         id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                         xml:space="preserve">
+<g>
+	<g>
+		<path d="M469.333,304.228V85.333c0-23.531-19.135-42.667-42.667-42.667h-53.333c-5.896,0-10.667,4.771-10.667,10.667v53.333    c0,11.76-9.573,21.333-21.333,21.333c-11.76,0-21.333-9.573-21.333-21.333c0-8.917,5.729-16.948,14.25-19.979    c4.25-1.521,7.083-5.542,7.083-10.052V10.667C341.333,4.771,336.563,0,330.667,0C324.771,0,320,4.771,320,10.667v32H160    c-5.896,0-10.667,4.771-10.667,10.667v53.333c0,11.76-9.573,21.333-21.333,21.333s-21.333-9.573-21.333-21.333    c0-8.917,5.729-16.948,14.25-19.979c4.25-1.521,7.083-5.542,7.083-10.052V10.667C128,4.771,123.229,0,117.333,0    c-5.896,0-10.667,4.771-10.667,10.667v32h-64C19.135,42.667,0,61.802,0,85.333v341.333c0,23.531,19.135,42.667,42.667,42.667    h261.561C325.767,495.376,358.31,512,394.667,512C459.365,512,512,459.365,512,394.667    C512,358.31,495.376,325.767,469.333,304.228z M277.333,394.667c0,11.104,1.652,21.811,4.548,32H42.667v-256h384v111.215    c-10.189-2.896-20.896-4.548-32-4.548C329.969,277.333,277.333,329.969,277.333,394.667z M455.542,370.208l-74.667,74.667    c-2.083,2.083-4.813,3.125-7.542,3.125c-2.729,0-5.458-1.042-7.542-3.125l-32-32c-4.167-4.167-4.167-10.917,0-15.083    c4.167-4.167,10.917-4.167,15.083,0l24.458,24.458l67.125-67.125c4.167-4.167,10.917-4.167,15.083,0    C459.708,359.292,459.708,366.042,455.542,370.208z"/>
+	</g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+</svg>
+                </div>
+                <div class="ml-3">
+                    <span>{{myBookings.selectBooking.event.date}}</span>
+                    <span>{{myBookings.selectBooking.event.time}}</span>
+                </div>
+            </div>
+            <div class="d-flex align-items-start mt-2">
+                <div class="svg-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                         id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                         xml:space="preserve">
+<g>
+	<g>
+		<path d="M256,0C150.125,0,64,86.135,64,192c0,141.646,177.146,310,184.688,317.104C250.75,511.031,253.375,512,256,512    s5.25-0.969,7.313-2.896C270.854,502,448,333.646,448,192C448,86.135,361.875,0,256,0z M256,298.667    c-58.813,0-106.667-47.854-106.667-106.667S197.188,85.333,256,85.333S362.667,133.188,362.667,192S314.813,298.667,256,298.667z"/>
+	</g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+                        <g>
+</g>
+</svg>
+                </div>
+                <p class="ml-3">
+                    <small>{{myBookings.selectBooking.event.address}}</small>
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 col-xl-4" v-for="visitor in myBookings.selectBooking.visitors">
+                    <div class="card mt-3" @click="getCurrentBooking(booking.code)">
+                        <div class="card-body">
+                            <span class="span_name">{{visitor.first_name}}</span>
+                            <span class="span_name">{{visitor.last_name}}</span>
+                            <p>{{visitor.birthdate}}</p>
+                            <div class="d-flex flex-column">
+                                <h5>Options:</h5>
+                                <div class=" d-flex align-items-center p-2" v-for="option in visitor.options">
+                                    <p style="margin: 0">{{option}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
